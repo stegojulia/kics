@@ -89,12 +89,8 @@
                 "type": "object",
                 "required": [
                     "id",
-                    "category",
                     "severity",
-                    "cve",
-                    "scanner",
                     "name",
-                    "message",
                     "links",
                     "location",
                     "identifiers"
@@ -103,10 +99,6 @@
                     "id": {
                         "type": "string",
                         "pattern": "^[A-Fa-f0-9]{64}$"
-                    },
-                    "category": {
-                        "type": "string",
-                        "minLength": 1
                     },
                     "severity": {
                         "type": "string",
@@ -117,16 +109,6 @@
                             "Info"
                         ]
                     },
-                    "cve": {
-                        "type": "string",
-                        "pattern": "^[A-Fa-f0-9]{64}$"
-                    },
-                    "scanner": {
-                        "type": "object",
-                        "required": [
-                            "id",
-                            "name"
-                        ],
                         "properties": {
                             "id": {
                                 "type": "string",
@@ -140,7 +122,8 @@
                     },
                     "name": {
                         "type": "string",
-                        "minLength": 1
+                        "minLength": 1,
+                        "maxLength": 255
                     },
                     "message": {
                         "type": "string",
@@ -156,7 +139,7 @@
                             "properties": {
                                 "url": {
                                     "type": "string",
-                                    "format": "uri"
+                                    "pattern": "^https?://.+"
                                 }
                             }
                         }

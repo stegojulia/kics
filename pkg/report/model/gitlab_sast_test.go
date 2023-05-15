@@ -16,7 +16,7 @@ func TestNewGitlabSASTReport(t *testing.T) {
 	glSAST := NewGitlabSASTReport(start, end).(*gitlabSASTReport)
 	require.Equal(
 		t,
-		"https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v14.1.0/dist/sast-report-format.json",
+		"https://gitlab.com/gitlab-org/security-products/security-report-schemas/-/raw/v15.0.6/dist/sast-report-format.json",
 		glSAST.Schema,
 	)
 	require.Equal(t, "15.0.6", glSAST.SchemaVersion)
@@ -57,7 +57,6 @@ var tests = []gitlabSASTTest{
 			Description: "test description",
 			QueryURI:    "https://www.test.com",
 			Severity:    model.SeverityHigh,
-			Category:    "sast",
 			Files: []model.VulnerableFile{
 				{KeyActualValue: "test", FileName: "test.json", Line: 1, SimilarityID: "similarity"},
 			},
@@ -72,15 +71,8 @@ var tests = []gitlabSASTTest{
 			Vulnerabilities: []gitlabSASTVulnerability{
 				{
 					ID:       "similarity",
-					Category: "sast",
 					Severity: "High",
-					CVE:      "similarity",
-					Scanner: gitlabSASTVulnerabilityScanner{
-						ID:   "keeping_infrastructure_as_code_secure",
-						Name: constants.Fullname,
-					},
-					Name:    "test",
-					Message: "test description",
+					Name:     "test",
 					Links: []gitlabSASTVulnerabilityLink{
 						{
 							URL: "https://www.test.com",
